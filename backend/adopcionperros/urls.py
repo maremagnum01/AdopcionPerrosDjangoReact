@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('perros.urls')),  # Agregá esta línea
+    #conexion api para el front
+    path('api/', include('perros.urls')),
 ]
