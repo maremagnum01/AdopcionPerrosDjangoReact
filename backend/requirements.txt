@@ -3,10 +3,10 @@ click==8.2.1
 Django==5.2.3
 django-cors-headers==4.7.0
 djangorestframework==3.16.0
+gunicorn==23.0.0
 h11==0.16.0
+packaging==25.0
+psycopg2-binary==2.9.10
 sqlparse==0.5.3
 uvicorn==0.34.3
-Django>=4
-gunicorn
-uvicorn
-psycopg2-binary
+whitenoise==6.9.0
