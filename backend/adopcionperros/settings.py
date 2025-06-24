@@ -27,10 +27,12 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-kiy$xj0wfb)@)-xokm_$!*orxt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    os.getenv("RENDER_EXTERNAL_HOSTNAME", "")
+    os.getenv("RENDER_EXTERNAL_HOSTNAME", ""),
+    "adopcionperrosdjangoreact.onrender.com"
 ]
 
 # Application definition
