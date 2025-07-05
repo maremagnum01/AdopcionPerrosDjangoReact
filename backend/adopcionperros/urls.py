@@ -16,10 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    #endpoint admin
     path('admin/', admin.site.urls),
-    # path('/',),
     #conexion api para el front
     path('api/', include('perros.urls')),
 ]
+
+## Verifica que DEBUG este en True y asi visualizar las imagenes de carpeta MEDIA
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

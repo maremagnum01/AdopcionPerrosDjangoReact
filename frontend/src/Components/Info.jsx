@@ -3,7 +3,7 @@ function Info(){
         <section class="info_section layout_padding2" id="info">
     <div class="container">
       <div class="info_items">
-        <a href="">
+        <a href="...">
           <div class="item ">
             <div class="img-box box-1">
               <img src="" alt=""/>
@@ -15,7 +15,7 @@ function Info(){
             </div>
           </div>
         </a>
-        <a href="">
+        <a href="...">
           <div class="item ">
             <div class="img-box box-2">
               <img src="" alt=""/>
@@ -27,7 +27,7 @@ function Info(){
             </div>
           </div>
         </a>
-        <a href="">
+        <a href="...">
           <div class="item ">
             <div class="img-box box-3">
               <img src="" alt=""/>

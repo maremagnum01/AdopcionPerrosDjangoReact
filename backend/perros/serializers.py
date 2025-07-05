@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Perro, Adoptante, SolicitudAdopcion
 
+#Serielizadores de los modelos para pasarlos a Json
+
 class PerroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Perro

@@ -1,10 +1,14 @@
 from django.db import models
 
+#Modelos de los objetos perro, adoptante y la solicitud de adopcion
+#con sus correspondientes atributos 
+
 class Perro(models.Model):
     nombre = models.CharField(max_length=100)
     edad = models.IntegerField()
     tamaño = models.CharField(max_length=50)
     raza = models.CharField(max_length=100)
+    img = models.ImageField(upload_to="img_perros", null=True, blank=True)
     descripcion = models.TextField()
     disponible = models.BooleanField(default=True)
 

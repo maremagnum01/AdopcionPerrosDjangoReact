@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import api from "../Services/api";
+import api from "@/Services/api";
 
 const PerroList = ()=>{
     const [perros, setPerros] = useState([]);
@@ -13,20 +13,20 @@ const PerroList = ()=>{
     return (
         <div class='container' id='listaperros'>
             <h2>Lista de perros </h2>
-            <ul>
-                {perros.map((perro)=>(
-                    <li key={perro.id}>
-                        <div class="card" Style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt={perro.nombre}/>
-                            <div class="card-body">
-                                <h5 class="card-title">{perro.nombre}</h5>
-                                <p class="card-text">{perro.descripcion}</p>
-                                <a href="\" class="btn btn-primary">Adoptar</a>
+                <ul>
+                    {perros.map((perro) => (
+                        <li key={perro.id}>
+                        <div className="card" Style={{ width: '10rem' }}>
+                            <img src={perro.img} className="card-img-top" alt={perro.nombre}/>
+                            <div className="card-body">
+                                <h5 className="card-title">{perro.nombre}</h5>
+                                <p className="card-text">{perro.descripcion}</p>
+                                <a href="/" className="btn btn-primary">Adoptar</a>
                             </div>
                         </div>
-                    </li>
-                ))}
-            </ul>
+                        </li>
+                    ))}
+                </ul>
 
             {/* <ul>
                 {perros.map((perro)=>(

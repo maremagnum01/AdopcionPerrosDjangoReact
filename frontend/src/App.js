@@ -6,6 +6,7 @@ import Map from '@/Components/Map'
 import Footer from '@/Components/Footer';
 import Info from '@/Components/Info';
 import PerroList from '@/Components/PerroList';
+import Gallery from '@/Components/Gallery';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Header/>
       <Section/>
       <PerroList/>
+      <Gallery/>
       <Map/>
       <Info/>
       <Footer/>
