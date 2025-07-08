@@ -16,8 +16,8 @@ const PerroList = ()=>{
                 <ul>
                     {perros.map((perro) => (
                         <li key={perro.id}>
-                        <div className="card" Style={{ width: '10rem' }}>
-                            <img src={perro.img} className="card-img-top" alt={perro.nombre}/>
+                        <div className="card" Style={{ width: '2rem' }}>
+                            <img src={perro.img} class="card-img-top" alt={perro.nombre}/>
                             <div className="card-body">
                                 <h5 className="card-title">{perro.nombre}</h5>
                                 <p className="card-text">{perro.descripcion}</p>

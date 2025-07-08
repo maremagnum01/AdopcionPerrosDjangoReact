@@ -26,6 +26,8 @@ urlpatterns = [
     path('api/', include('perros.urls')),
 ]
 
-## Verifica que DEBUG este en True y asi visualizar las imagenes de carpeta MEDIA
+## Verifica que en settings el DEBUG este en True y asi visualizar las imagenes de carpeta MEDIA
+## Dentro de settings se cargar el .env, el cual tiene esta funcion activada
+## Esto permite visualizar las imagenes en Modo DEBUG
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
