@@ -4,12 +4,17 @@ from django.db import models
 #con sus correspondientes atributos 
 
 class Perro(models.Model):
+    OPCIONES_TAMAÑO = [
+        ('1', 'Chico'),
+        ('2', 'Mediano'),
+        ('3', 'Grande')
+    ]
     nombre = models.CharField(max_length=100)
     edad = models.IntegerField()
-    tamaño = models.CharField(max_length=50)
+    tamaño = models.CharField(max_length=1, choices=OPCIONES_TAMAÑO, blank=False)
     raza = models.CharField(max_length=100)
-    img = models.ImageField(upload_to="img_perros", null=True, blank=True)
-    descripcion = models.TextField()
+    img = models.ImageField(upload_to="img_perros", null=True, blank=True, default='img_perros/default.jpg')
+    descripcion = models.TextField(blank=True, null=True, default='No incluye descripcion', max_length=50)
     disponible = models.BooleanField(default=True)
 
     def __str__(self):
