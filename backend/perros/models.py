@@ -13,7 +13,8 @@ class Perro(models.Model):
     edad = models.IntegerField()
     tamaño = models.CharField(max_length=1, choices=OPCIONES_TAMAÑO, blank=False)
     raza = models.CharField(max_length=100)
-    img = models.ImageField(upload_to="img_perros", null=True, blank=True, default='img_perros/default.jpg')
+    # img = models.ImageField(upload_to="img_perros", null=True, blank=True, default='img_perros/default.jpg')
+    img = models.ImageField() ## usar asi con CLOUDINARY
     descripcion = models.TextField(blank=True, null=True, default='No incluye descripcion', max_length=50)
     disponible = models.BooleanField(default=True)
 
