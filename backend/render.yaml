@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: adopcionperros
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn adopcionperros.wsgi:application"
+    staticPublishPath: media
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: adopcionperros.settings

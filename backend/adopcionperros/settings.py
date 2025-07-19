@@ -12,9 +12,16 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from django.conf import settings
+from django.urls import reverse
+from rest_framework.serializers import HyperlinkedModelSerializer
 
-## Carga .env el cual contiene DEBUG = True
-load_dotenv()
+## Se carga las variables de entorno 
+# load_dotenv()
+# DEBUG en desarrollo (True) para que se consuman las imagenes de la api en desarrollo
+# DEBUG en produccion (False) para que se consuman las imagenes de la api en produccion
+# DEBUG = os.getenv("DEBUG", "False") == "True"
+# DEBUG = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,9 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-kiy$xj0wfb)@)-xokm_$!*orxth$2r$g_2avox=m*dv2)fexk7")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# las imagenes para consumir en la api, se debe tener DEBUG en True
-# DEBUG = os.getenv("DEBUG", "False") == "True"
-# DEBUG = True
+
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = [
@@ -66,6 +71,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+# CORS_ALLOW_ALL_ORIGINS = True # test de imagenes 
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
