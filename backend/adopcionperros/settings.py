@@ -62,6 +62,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'perros',
     'corsheaders',
+    #CLOUDINARY
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -163,15 +166,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 ## CLOUDINARY
-INSTALLED_APPS += [
-    'cloudinary',
-    'cloudinary_storage',
-]
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dk7buww21',
     'API_KEY': '268784131343755',
     'API_SECRET': 'VQ_vxrUXorlazicLOD2VhFYGmM4',
 }
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
