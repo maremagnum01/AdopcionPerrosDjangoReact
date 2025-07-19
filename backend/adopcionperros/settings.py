@@ -15,12 +15,16 @@ from dotenv import load_dotenv
 from django.conf import settings
 from django.urls import reverse
 from rest_framework.serializers import HyperlinkedModelSerializer
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 ## Se carga las variables de entorno 
-# load_dotenv()
+load_dotenv()
+
 # DEBUG en desarrollo (True) para que se consuman las imagenes de la api en desarrollo
 # DEBUG en produccion (False) para que se consuman las imagenes de la api en produccion
-# DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "True"
 # DEBUG = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,3 +160,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Directorio de imagenes 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+## CLOUDINARY
+INSTALLED_APPS += [
+    'cloudinary',
+    'cloudinary_storage',
+]
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dk7buww21',
+    'API_KEY': '268784131343755',
+    'API_SECRET': 'VQ_vxrUXorlazicLOD2VhFYGmM4',
+}
