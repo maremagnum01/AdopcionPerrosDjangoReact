@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-kiy$xj0wfb)@)-xokm_$!*orxt
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # las imagenes para consumir en la api, se debe tener DEBUG en True
-DEBUG = os.getenv("DEBUG", "False") == "True"
+# DEBUG = os.getenv("DEBUG", "False") == "True"
 # DEBUG = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
