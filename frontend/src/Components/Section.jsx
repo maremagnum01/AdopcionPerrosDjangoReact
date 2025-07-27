@@ -11,7 +11,7 @@ function Section(){
                         <h1>
                         Profesionales
                         <span>
-                            Cuando tu mascota
+                            Cuidando tu mascota
                         </span>
                         </h1>
                         <p>
