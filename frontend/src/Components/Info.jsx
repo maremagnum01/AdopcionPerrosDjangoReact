@@ -3,19 +3,19 @@ function Info(){
         <section class="info_section layout_padding2" id="info">
     <div class="container">
       <div class="info_items">
-        <a href="...">
+        <a href="/" style={{textDecoration: "none"}}>
           <div class="item ">
             <div class="img-box box-1">
               <img src="" alt=""/>
             </div>
             <div class="detail-box">
               <p>
-                Location
+                Ubicacion
               </p>
             </div>
           </div>
         </a>
-        <a href="...">
+        <a href="/" style={{textDecoration: "none"}}>
           <div class="item ">
             <div class="img-box box-2">
               <img src="" alt=""/>
@@ -27,14 +27,14 @@ function Info(){
             </div>
           </div>
         </a>
-        <a href="...">
+        <a href="/" style={{textDecoration: "none"}}>
           <div class="item ">
             <div class="img-box box-3">
               <img src="" alt=""/>
             </div>
             <div class="detail-box">
               <p>
-                demo@gmail.com
+                doccion-demo@demo.com
               </p>
             </div>
           </div>

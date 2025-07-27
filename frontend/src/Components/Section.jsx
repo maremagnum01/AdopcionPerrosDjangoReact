@@ -21,7 +21,7 @@ function Section(){
                         <a href="#listaperros" class="btn-1" style={{textDecoration:'None', borderRadius: '5px', width:'170px'}}>
                             Ver perros
                         </a>
-                        <a href="/" class="btn-2" style={{textDecoration:'None', borderRadius: '5px', margin: '10px', width:'170px', marginRight:'20px'}}>
+                        <a href='#info' class="btn-2" style={{textDecoration:'None', borderRadius: '5px', margin: '10px', width:'170px', marginRight:'20px'}}>
                             Contacto
                         </a>
                         </div>

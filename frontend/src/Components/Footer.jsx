@@ -3,7 +3,7 @@ function Footer(){
         <section class="container-fluid footer_section">
     <p>
       &copy; 2025 TP Poo IFTS N11 
-      <a href="https://html.design/"> Free Html Templates</a>
+      {/* <a href="https://html.design/"> Free Html Templates</a> */}
     </p>
   </section>
     )

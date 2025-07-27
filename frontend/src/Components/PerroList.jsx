@@ -1,15 +1,27 @@
 import React, {useEffect, useState} from 'react';
-import api from "@/Services/api";
-// import api from "@/Services/api_produccion";
+import ClipLoader from "react-spinners/ClipLoader";
+// import api from "@/Services/api";
+import api from "@/Services/api_produccion";
 
 const PerroList = ()=>{
     const [perros, setPerros] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
+        setLoading(true);
         api.get("/perros/")
         .then((response) => setPerros(response.data))
-        .catch((error) => console.error("Error al obtener perros:", error));
+        .catch((error) => console.error("Error al obtener perros:", error))
+        .finally(()=> setLoading(false)) 
     }, []);
+
+    if (loading) {
+        return (
+            <div style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+              <ClipLoader color="#0dc3ff" size={50} />
+            </div>
+          );
+    }
 
     return (
         <div id='listaperros' style= {{textAlign: 'center', backgroundColor: '#f8f9fa', padding: '50px'}}>
