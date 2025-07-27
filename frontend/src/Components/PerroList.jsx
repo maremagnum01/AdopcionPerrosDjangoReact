@@ -17,9 +17,11 @@ const PerroList = ()=>{
 
     if (loading) {
         return (
-            <div style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+            <div tyle= {{textAlign: 'center',marginTop:'50px'}}>
                 <h4>Cargando Api de OnRender (Tardara unos segundos)</h4>
-              <ClipLoader color="#0dc3ff" size={50} />
+                <div style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+                    <ClipLoader color="#0dc3ff" size={50} />
+                </div>
             </div>
           );
     }
