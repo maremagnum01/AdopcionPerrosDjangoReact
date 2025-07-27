@@ -18,14 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic.base import RedirectView
+# from django.views.generic.base import RedirectView
 
 urlpatterns = [
     #endpoint admin
     path('admin/', admin.site.urls),
     #conexion api para el front
     path('api/', include('perros.urls')),
-    path('', RedirectView.as_view(url='https://doccion-fc786.web.app/', permanent=False)),
+    # path('', RedirectView.as_view(url='https://doccion-fc786.web.app/', permanent=False)),
 ]
 
 ## Verifica que en settings el DEBUG este en True y asi visualizar las imagenes de carpeta MEDIA
