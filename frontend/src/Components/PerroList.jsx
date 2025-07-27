@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-// import api from "@/Services/api";
-import api from "@/Services/api_produccion";
+import api from "@/Services/api";
+// import api from "@/Services/api_produccion";
 
 const PerroList = ()=>{
     const [perros, setPerros] = useState([]);
@@ -23,7 +23,7 @@ const PerroList = ()=>{
                                 <h5 className="card-title">{perro.nombre}</h5>
                                 <p style={{fontSize: '15px'}}>Raza: <b>{perro.raza}</b></p>
                                 <p className="card-text" style={{fontSize: '13px'}}>{perro.descripcion}</p>
-                                <span style={{fontSize: '13px'}}><b>{perro.disponible ? "Disponible" : "Reservado"}</b></span>
+                                <span style={{fontSize: '13px', color: "green"}}><b>{perro.disponible ? "Disponible" : "Reservado"}</b></span>
                                 {/* <a href="/" className="btn btn-primary">Adoptar</a> */}
                             </div>
                         </div>
