@@ -83,6 +83,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    "https://doccion-fc786.web.app",
 ]
 
 ROOT_URLCONF = 'adopcionperros.urls'
