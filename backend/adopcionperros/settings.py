@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'perros',
     'corsheaders',
     #CLOUDINARY
@@ -172,6 +173,12 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dk7buww21',
     'API_KEY': '268784131343755',
     'API_SECRET': 'VQ_vxrUXorlazicLOD2VhFYGmM4',
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

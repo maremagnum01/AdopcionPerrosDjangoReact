@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User #importamos el modelo de usuario para relacionarlo con el adoptante
 
 #Modelos de los objetos perro, adoptante y la solicitud de adopcion
 #con sus correspondientes atributos 
@@ -23,13 +24,35 @@ class Perro(models.Model):
 
 
 class Adoptante(models.Model):
-    nombre = models.CharField(max_length=100)
+    #Opciones de vivienda
+    OPCIONES_VIVIENDA = [
+        ('casa_patio', 'Casa con patio/jardín'),
+        ('casa_sin_patio', 'Casa sin patio'),
+        ('depto_grande', 'Departamento grande'),
+        ('depto_chico', 'Departamento chico')        
+    ]
+    #Tiempo dispinible
+    OPCIONES_TIEMPO = [
+        ('bajo', 'Poco tiempo (menos de 1 hora al día)'),
+        ('medio', 'Tiempo moderado (1 a 2 horas al día)'),
+        ('alto', 'Mucho tiempo (más de 2 horas al día)')
+    ]
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil_adoptante', null=True, blank=True)
     dni = models.CharField(max_length=10)
-    email = models.EmailField()
     telefono = models.CharField(max_length=20)
+    edad = models.IntegerField(null=True, blank=True)
+    
+    #Algoritmo para IA
+    tipo_vivienda = models.CharField(max_length=20, choices=OPCIONES_VIVIENDA, default='casa_patio')
+    tiene_niños = models.BooleanField(default=False, help_text="¿Viven niños en el hogar?")
+    tiene_otras_mascotas = models.BooleanField(default=False, help_text="¿Tiene otros perros o gatos?")
+    tiempo_disponible = models.CharField(max_length=10, choices=OPCIONES_TIEMPO, default='medio')
+    actividad_fisica = models.BooleanField(default=False, help_text="¿Busca un perro para hacer actividad intensa/correr?")
+    
 
     def __str__(self):
-        return self.nombre
+        return f"Perfil de {self.user.username}"
 
 
 class SolicitudAdopcion(models.Model):
