@@ -1,9 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import PerroViewSet, AdoptanteViewSet, SolicitudAdopcionViewSet,RegistroAdoptanteView
+from .views import PerroViewSet, AdoptanteViewSet, SolicitudAdopcionViewSet,RegistroAdoptanteView, SolicitudAdopcionCreateView
 from django.conf import settings
 from django.conf.urls.static import static
-
 # Vistas simplejwt para el login
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -26,6 +25,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # ruta de registro
     path('registro/', RegistroAdoptanteView.as_view(), name='registro_adoptante'),
+    path('adoptar/', SolicitudAdopcionCreateView.as_view(), name='registrar_adopcion')
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #url para imagenes de los modelos
 

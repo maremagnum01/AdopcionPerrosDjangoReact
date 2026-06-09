@@ -7,8 +7,7 @@ import Footer from '@/Components/Footer';
 import Info from '@/Components/Info';
 import PerroList from '@/Components/PerroList';
 import Gallery from '@/Components/Gallery';
-
-// Importamos los nuevos componentes de autenticación
+import About from './Components/About';
 import Login from '@/Components/Login';
 import Registro from '@/Components/Registro';
 
@@ -46,7 +45,7 @@ function App() {
         onLogout={handleLogout}
       />
       
-      {/* --- MODAL FLOTANTE DE LOGIN --- */}
+      {/*  MODAL */}
       {mostrarLogin && (
         <div style={modalOverlayStyle} onClick={() => setMostrarLogin(false)}>
           {/* El stopPropagation evita que el modal se cierre si hacés clic adentro del formulario */}
@@ -59,7 +58,7 @@ function App() {
         </div>
       )}
 
-      {/* --- MODAL FLOTANTE DE REGISTRO --- */}
+      {/*  MODAL  */}
       {mostrarRegistro && (
         <div style={modalOverlayStyle} onClick={() => setMostrarRegistro(false)}>
           <div className="card p-4 shadow-lg border-0" style={{ ...modalContentStyle, maxWidth: '450px' }} onClick={(e) => e.stopPropagation()}>
@@ -75,9 +74,10 @@ function App() {
       <Section/>
       
       {/* Le pasamos "isLogged" a la lista de perros para saber en el futuro si habilitamos el botón Adoptar */}
-      <PerroList isLogged={isLogged} /> 
+      <PerroList isLogged={isLogged} onOpenLogin={() => setMostrarLogin(true)} /> 
       
       <Gallery/>
+      <About/>
       <Map/>
       <Info/>
       <Footer/>
@@ -85,15 +85,13 @@ function App() {
   );
 }
 
-// --- ESTILOS DEL MODAL FLOTANTE (CSS-in-JS) ---
-
 const modalOverlayStyle = {
   position: 'fixed',
   top: 0,
   left: 0,
   width: '100vw',
   height: '100vh',
-  backgroundColor: 'rgba(0, 0, 0, 0.6)', // Fondo oscuro semitransparente
+  backgroundColor: 'rgba(0, 0, 0, 0.6)', 
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -106,7 +104,7 @@ const modalContentStyle = {
   width: '90%',
   maxWidth: '360px',
   maxHeight: '85vh',
-  overflowY: 'auto', // Permite scroll interno si el formulario es largo (como el de registro)
+  overflowY: 'auto', // Permite scroll interno si el formulario es largo
   boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.3)',
 };
 

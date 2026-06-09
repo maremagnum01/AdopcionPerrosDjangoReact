@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User #importamos el modelo de usuario para relacionarlo con el adoptante
+from django.utils import timezone
 
 #Modelos de los objetos perro, adoptante y la solicitud de adopcion
 #con sus correspondientes atributos 
@@ -52,15 +53,36 @@ class Adoptante(models.Model):
     
 
     def __str__(self):
-        return f"Perfil de {self.user.username}"
-
+        # Si tiene usuario vinculado, muestra el username.
+        if self.user and self.user.username:
+            return f"Perfil de {self.user.username}"
+        # Si estás creando uno nuevo en el admin y no tiene DNI cargado todavía:
+        if self.dni:
+            return f"Adoptante DNI: {self.dni}"
+        return "Nuevo Adoptante (En creación)"
 
 class SolicitudAdopcion(models.Model):
-    perro = models.ForeignKey(Perro, on_delete=models.CASCADE)
+    ESTADOS = [
+        ('PENDIENTE', 'Pendiente de aprobación'),
+        ('APROBADO', 'Adoptado definitivamente'),
+        ('RECHAZADO', 'Solicitud rechazada'),
+    ]
+
     adoptante = models.ForeignKey(Adoptante, on_delete=models.CASCADE)
+    perro = models.ForeignKey(Perro, on_delete=models.CASCADE)
     fecha = models.DateField(auto_now_add=True)
-    estado = models.CharField(max_length=50, default='pendiente')
+    estado = models.CharField(max_length=50, choices=ESTADOS, default='PENDIENTE')
 
     def __str__(self):
-        return f"{self.adoptante} solicita a: {self.perro}"
-
+        # Buscamos el nombre del adoptante de forma segura
+        if self.adoptante and self.adoptante.user and self.adoptante.user.username:
+            username = self.adoptante.user.username
+        elif self.adoptante and self.adoptante.dni:
+            username = f"Adoptante DNI {self.adoptante.dni}"
+        else:
+            username = "Adoptante nuevo"
+            
+        # Buscamos el nombre del perro de forma segura
+        perro_nombre = self.perro.nombre if self.perro else "Perro nuevo"
+        
+        return f"Solicitud de {username} para {perro_nombre} - Estado: {self.estado}"

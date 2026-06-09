@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Header({ isLogged, onClickLogin, onClickRegistro, onLogout }) {
+    console.log(isLogged)
     return (
         <header className="header_section"> {/* Cambiado class por className */}
             <div className="container-fluid">
@@ -25,6 +26,9 @@ function Header({ isLogged, onClickLogin, onClickRegistro, onLogout }) {
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href='#info'>Contacto</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href='#about'>Sobre nosotros</a>
                                 </li>
                             </ul>
 
