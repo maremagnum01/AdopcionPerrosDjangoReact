@@ -10,12 +10,14 @@ import Gallery from '@/Components/Gallery';
 import About from './Components/About';
 import Login from '@/Components/Login';
 import Registro from '@/Components/Registro';
+import Visitar from '@/Components/Visitar';
 
 function App() {
   // Estados para controlar la visibilidad de los formularios en la One-Page
   const [mostrarLogin, setMostrarLogin] = useState(false);
   const [mostrarRegistro, setMostrarRegistro] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const [mostrarModalVisita, setMostrarModalVisita] = useState(false);
 
   // Al cargar la aplicación por primera vez, verificamos si ya existe un token guardado
   useEffect(() => {
@@ -45,7 +47,7 @@ function App() {
         onLogout={handleLogout}
       />
       
-      {/*  MODAL */}
+      {/*  MODAL DEL LOGIN*/}
       {mostrarLogin && (
         <div style={modalOverlayStyle} onClick={() => setMostrarLogin(false)}>
           {/* El stopPropagation evita que el modal se cierre si hacés clic adentro del formulario */}
@@ -58,7 +60,7 @@ function App() {
         </div>
       )}
 
-      {/*  MODAL  */}
+      {/*  MODAL DEL REGISTRO */}
       {mostrarRegistro && (
         <div style={modalOverlayStyle} onClick={() => setMostrarRegistro(false)}>
           <div className="card p-4 shadow-lg border-0" style={{ ...modalContentStyle, maxWidth: '450px' }} onClick={(e) => e.stopPropagation()}>
@@ -74,8 +76,20 @@ function App() {
       <Section/>
       
       {/* Le pasamos "isLogged" a la lista de perros para saber en el futuro si habilitamos el botón Adoptar */}
-      <PerroList isLogged={isLogged} onOpenLogin={() => setMostrarLogin(true)} /> 
+      <PerroList isLogged={isLogged} onOpenLogin={() => setMostrarLogin(true)} onOpenVisita={()=> setMostrarModalVisita(true)} /> 
       
+      {/* MODAL DE VISITA */}
+      {mostrarModalVisita && (
+        <div style={modalOverlayStyle} onClick={() => setMostrarModalVisita(false)}>
+          <div className="card p-4 shadow-lg border-0" style={modalContentStyle} onClick={(e) => e.stopPropagation()}>
+            <div className="text-end mb-2">
+              <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => setMostrarModalVisita(false)} style={{ borderRadius: '50%', width: '30px', height: '30px', padding: '0' }}>X</button>
+            </div>
+            <Visitar />
+          </div>
+        </div>
+      )}
+
       <Gallery/>
       <About/>
       <Map/>
