@@ -8,6 +8,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from .views import PerroViewSet, AdoptanteViewSet, SolicitudAdopcionViewSet, RegistroAdoptanteView, SolicitudAdopcionCreateView, RecomendacionesIAView
 
 router = DefaultRouter()
 router.register(r'perros', PerroViewSet)
@@ -25,7 +26,9 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # ruta de registro
     path('registro/', RegistroAdoptanteView.as_view(), name='registro_adoptante'),
-    path('adoptar/', SolicitudAdopcionCreateView.as_view(), name='registrar_adopcion')
+    path('adoptar/', SolicitudAdopcionCreateView.as_view(), name='registrar_adopcion'),
+    #endpoint para recomendaciones de perros usando IA
+    path('perros-ia/', RecomendacionesIAView.as_view(), name='perros_ia'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #url para imagenes de los modelos
 

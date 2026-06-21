@@ -16,6 +16,10 @@
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
+  <!-- mapa -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -63,32 +67,29 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgTljt1KK3A82t7m6R70ckKt4G2ISX6qg&loading=async&libraries=maps&v=beta&callback=initMap" async defer></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script> -->
-    <script>
-      // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-      // Australia.
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: {
-            lat: -34.60253602424296,
-            lng: -58.44171035691353
-          },
-        });
-  
-        var image = 'images/maps-and-flags.png';
-        var beachMarker = new google.maps.Marker({
-          position: {
-            lat: 40.645037,
-            lng: -73.880224
-          },
-          map: map,
-          icon: image
-        });
-      }
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgTljt1KK3A82t7m6R70ckKt4G2ISX6qg&loading=async&libraries=maps&v=weekly&callback=initMap" async defer></script>
     
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      var lat = -34.602536;
+      var lng = -58.441710;
+    
+      // 1. Inicializar el mapa centrado en Buenos Aires con zoom 15
+      var map = L.map('map').setView([lat, lng], 15);
+    
+      // 2. Cargar las imágenes del mapa (Tiles) desde OpenStreetMap (Gratis)
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+    
+      // 3. Clavar el marcador del refugio
+      var marker = L.marker([lat, lng]).addTo(map);
+      marker.bindPopup("<b>¡Nuestro Refugio y Clínica!</b><br>Atención gratuita.").openPopup();
+    </script>
     
   </body>
 </html>

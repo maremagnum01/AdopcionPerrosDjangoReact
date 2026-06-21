@@ -16,7 +16,9 @@ function App() {
   // Estados para controlar la visibilidad de los formularios en la One-Page
   const [mostrarLogin, setMostrarLogin] = useState(false);
   const [mostrarRegistro, setMostrarRegistro] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(() => {
+    return localStorage.getItem("access_token") ? true : false;
+  });
   const [mostrarModalVisita, setMostrarModalVisita] = useState(false);
 
   // Al cargar la aplicación por primera vez, verificamos si ya existe un token guardado

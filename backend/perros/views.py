@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import RegistroAdoptanteSerializer
+from .ia_matcher import calcular_compatibilidad
 
 #Visulizaciones de los modelos
 #mostramos los atributos que deseamos, en este caso usamos todos
@@ -66,3 +67,34 @@ class SolicitudAdopcionCreateView(APIView):
             return Response({"error": "Perro no encontrado"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class RecomendacionesIAView(APIView):
+    # 🔒 Seguridad: Obligatorio estar logueado para calcular su match personalizado
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            # 1. Buscamos el perfil de adoptante del usuario que hace la petición
+            adoptante = Adoptante.objects.get(user=request.user)
+        except Adoptante.DoesNotExist:
+            return Response({"error": "Debe completar su perfil de adoptante para usar la recomendación por IA."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 2. Buscamos solo los perros que estén disponibles
+        perros = Perro.objects.filter(disponible=True)
+        lista_recomendados = []
+
+        # 3. Recorremos los perros y les calculamos el match individual
+        for perro in perros:
+            porcentaje = calcular_compatibilidad(adoptante, perro)
+            
+            # Convertimos el objeto Perro a JSON con tu Serializer existente
+            perro_data = PerroSerializer(perro, context={'request': request}).data
+            
+            # Le inyectamos una clave nueva al JSON llamada 'match_porcentaje'
+            perro_data['match_porcentaje'] = porcentaje
+            lista_recomendados.append(perro_data)
+        
+        # 4. Ordenamos la lista de mayor a menor porcentaje (reverse=True)
+        lista_recomendados = sorted(lista_recomendados, key=lambda x: x['match_porcentaje'], reverse=True)
+
+        return Response(lista_recomendados, status=status.HTTP_200_OK)
